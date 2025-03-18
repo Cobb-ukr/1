@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRO+ DENTAL CARE</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 40px;
+            line-height: 1.8;
+            background-color: #E0F2E9;
+            text-align: center;
+        }
+        h1, h2 {
+            color: #4db492;
+            font-family: 'Georgia', serif;
+        }
+        .container {
+            max-width: 850px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.15);
+        }
+        .btn {
+            display: block;
+            width: 85%;
+            margin: 10px auto;
+            padding: 15px 25px;
+            background-color: #4db492;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+            font-size: 16px;
+        }
+        .btn:hover {
+            background-color: #8bcab7;
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            width: 90%;
+            margin: 20px auto;
+        }
+        .column {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .appointment-btn {
+            width: 300px;
+            margin: 30px auto 10px auto;
+            padding: 15px 30px;
+            background-color: #4db492;
+            font-size: 18px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Welcome to PRO+ DENTAL CARE</h1>
+    <h2>Preventative Dental Treatments</h2>
+    
+    <div class="services-grid">
+        <div class="column">
+            <a href="preventitive_service/scaling-polishing.html" class="btn">Scaling and Polishing</a>
+        </div>
+        <div class="column">
+            <a href="preventitive_service/orthodontic-treatment.html" class="btn">Orthodontic Treatment</a>
+        </div>
+    </div>
+    
+    <a href="appointment.html" class="btn appointment-btn">Book an Appointment</a>
+    <br>
+    <a href="index.html" class="btn appointment-btn">Back to Home</a>
+</div>
+
+</body>
+</html>

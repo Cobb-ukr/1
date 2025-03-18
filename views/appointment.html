@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Appointment - Pro+ Dental Care</title>
+    <style>
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, rgba(102, 199, 165, 0.8), rgba(44, 62, 80, 0.8)), url('background-image.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Overlay animation */
+        body:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.1));
+            animation: shimmer 2s infinite alternate;
+            z-index: -1;
+        }
+
+        @keyframes shimmer {
+            0% {
+                background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.1));
+            }
+            100% {
+                background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0.2));
+            }
+        }
+
+        /* Form Container */
+        .form-container {
+            width: 100%;
+            max-width: 500px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            text-align: center;
+            animation: slideIn 1s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Form Elements */
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 16px;
+            color: #333;
+            font-weight: bold;
+            text-align: left;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #66C7A5;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #5bb696;
+        }
+
+        h2 {
+            margin-bottom: 30px;
+            color: #333;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        a {
+            color: #66C7A5;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- Form Container -->
+    <div class="form-container">
+        <h2>Book Your Appointment</h2>
+        <form onsubmit="bookAppointment(event)">
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" required placeholder="Enter your full name">
+
+            <label for="date">Appointment Date:</label>
+            <input type="date" id="date" required>
+
+            <label for="time">Preferred Time:</label>
+            <input type="time" id="time" required>
+
+            <label for="phoneNumber">Phone Number:</label>
+            <input type="text" id="phoneNumber" required placeholder="Enter your phone number">
+
+            <button type="submit" class="btn">Book Appointment</button>
+            <br>
+            <p>Don't have an account? <a href="register">Register</a></p>
+            <br>
+            <p> <a href="index.html">Home</a></p>
+            <br>
+        </form>
+        <p>For assistance, contact us at <a href="tel:+1234567890">+91 08904228849</a></p>
+    </div>
+
+    <script>
+        async function bookAppointment(event) {
+            event.preventDefault();
+
+            const appointmentDetails = {
+                name: document.getElementById('name').value,
+                date: document.getElementById('date').value,
+                time: document.getElementById('time').value,
+                phoneNumber: document.getElementById('phoneNumber').value
+            };
+
+            const token = localStorage.getItem('token');
+
+            const response = await fetch('/api/appointment/book', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': token
+                },
+                body: JSON.stringify(appointmentDetails)
+            });
+
+            const data = await response.json();
+            if (response.ok) {
+                alert("Appointment booked successfully");
+            } else {
+                alert(data.message || "Booking failed");
+            }
+        }
+    </script>
+</body>
+</html>

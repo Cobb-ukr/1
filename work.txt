@@ -1,0 +1,3 @@
+adding function for reminder emails:
+updated Admin\templates\index.html
+updated Admin\app.py to add routing

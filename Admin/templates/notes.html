@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment Notes</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+</head>
+<body>
+    <h1>Appointment Notes</h1>
+
+    <h2>Appointment Details</h2>
+    {% if appointment %}
+    <p><strong>Name:</strong> {{ appointment.get('name', 'N/A') }}</p>
+    <p><strong>Phone Number:</strong> {{ appointment.get('phoneNumber', 'N/A') }}</p>
+    <p><strong>Date:</strong> {{ appointment.get('date', 'N/A') }}</p>
+    <p><strong>Time:</strong> {{ appointment.get('time', 'N/A') }}</p>
+    {% else %}
+    <p>Appointment not found.</p>
+    {% endif %}
+    
+    <h2>Add Notes</h2>
+    <form method="POST">
+        <label for="doctor_name">Doctor Name:</label>
+        <input type="text" name="doctor_name" required>
+
+        <label for="point">Point:</label>
+        <input type="text" name="point" required>
+
+        <label for="subpoint">Date of Visit:</label>
+        <input type="text" id="subpoint" name="subpoint" required>
+
+        <button type="submit" class="btn btn-add">Add Note</button>
+    </form>
+
+    <h2>Previous Notes</h2>
+    <ul>
+        {% for note in notes %}
+            <li><strong>Doctor:</strong> {{ note.get('doctor_name', 'N/A') }}<br>
+                <strong>Point:</strong> {{ note.get('point', 'N/A') }}<br>
+                <strong>Last Visit:</strong> {{ note.get('Last_visit', 'N/A') }}</li>
+        {% else %}
+            <li>No notes available.</li>
+        {% endfor %}
+    </ul>
+    
+    <a href="{{ url_for('index', status='default') }}" class="btn btn-back">Back to Home</a>
+    
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+        flatpickr("#subpoint", {
+            enableTime: true,
+            dateFormat: "Y-m-d H:i",
+        });
+    </script>
+</body>
+</html>

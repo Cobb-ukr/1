@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment Selection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Select Appointment Type</h1>
+    <a href="{{ url_for('index', status='In Progress') }}" class="btn btn-progress">In Progress</a>
+    <a href="{{ url_for('index', status='Completed') }}" class="btn btn-complete">Completed</a>
+    <a href="{{ url_for('index', status='Others') }}" class="btn btn-others">Others</a>
+</body>
+</html>
